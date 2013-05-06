@@ -9,6 +9,14 @@
     <p class="description">
       ${context.description}
     </p>
+    <h2>
+        Select Language
+    </h2>
+    <ul>
+        <li tal:repeat="l languages">
+            <a href="${l.url}">${l.title}</a>
+        </li>
+    </ul>
   </article>
 
 </html>

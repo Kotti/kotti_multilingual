@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+
+"""
+Created on 2013-05-05
+:author: Andreas Kaiser (disko)
+"""
+
 from pyramid.interfaces import ITranslationDirectories
 
 from kotti_multilingual import includeme
@@ -14,7 +21,8 @@ def test_kotti_configure():
     kotti_configure(settings)
 
     assert settings['pyramid.includes'] == ' kotti_multilingual'
-    assert settings['kotti.available_types'] == ' kotti_multilingual.resources.Language'
+    assert settings['kotti.available_types'] == \
+        ' kotti_multilingual.resources.LanguageSection'
 
 
 def test_includeme(config):

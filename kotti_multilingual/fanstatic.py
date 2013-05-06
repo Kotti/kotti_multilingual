@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+
+"""
+Created on 2013-05-05
+:author: Andreas Kaiser (disko)
+"""
+
 from __future__ import absolute_import
 
 from fanstatic import Group

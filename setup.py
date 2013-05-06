@@ -1,10 +1,17 @@
+# -*- coding: utf-8 -*-
+
+"""
+Created on 2013-05-05
+:author: Andreas Kaiser (disko)
+"""
+
 import os
 
 from setuptools import find_packages
 from setuptools import setup
 
 project = 'kotti_multilingual'
-version = '0.1'
+version = '0.1dev'
 
 here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.rst')).read()
@@ -13,7 +20,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.rst')).read()
 setup(
     name=project,
     version=version,
-    description="Language content type for Kotti",
+    description="Language Section content type for Kotti",
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
         "Environment :: Web Environment",
@@ -37,7 +44,9 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'Babel',
         'Kotti',
+        'pycountry',
     ],
     entry_points={
         'fanstatic.libraries': [
