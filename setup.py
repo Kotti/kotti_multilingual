@@ -20,7 +20,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.rst')).read()
 setup(
     name=project,
     version=version,
-    description="Language Section content type for Kotti",
+    description="Multilangual sites with Kotti",
     long_description=README + '\n\n' + CHANGES,
     classifiers=[
         "Environment :: Web Environment",
@@ -35,7 +35,7 @@ setup(
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Software Development :: User Interfaces",
     ],
-    keywords='kotti theme',
+    keywords='kotti add-on',
     author='Andreas Kaiser',
     author_email='disko@binary-punks.com',
     url='https://github.com/disko/kotti_multilingual',

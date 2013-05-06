@@ -22,7 +22,7 @@ The package contains a single content type ``LanguageSection`` which is
 supposed to be the container of all content in a specific language.  All
 content that is created in (or moved into) such a subtree will be automatically
 tagged with the language of the section.  This is done by subscribing to
-Kotti's ``ObjectInsert``and ``ObjectUpdate`` events.
+Kotti's ``ObjectInsert`` and ``ObjectUpdate`` events.
 
 The package also extends Kotti's ``TemplateAPI`` with an additional
 ``language_root`` attribute that can be used as the navigation root for the
