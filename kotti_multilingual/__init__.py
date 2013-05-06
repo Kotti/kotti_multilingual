@@ -25,6 +25,17 @@ def kotti_configure(settings):
     Image.type_info.addable_to.append('LanguageSection')
 
 
+def kotti_configure_template_api(settings):
+
+    settings['kotti.templates.api'] = \
+        'kotti_multilingual.views.util.TemplateAPI'
+
+
+def kotti_configure_template_overrides(settings):
+
+    settings['pyramid.includes'] += ' kotti_multilingual.template_overrides'
+
+
 def includeme(config):
 
     config.add_translation_dirs('kotti_multilingual:locale')
