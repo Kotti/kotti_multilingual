@@ -5,20 +5,16 @@ Created on 2013-05-05
 :author: Andreas Kaiser (disko)
 """
 
-from babel import Locale
 from colander import SchemaNode
 from colander import String
-from kotti.resources import Content
 from kotti.views.edit.content import DocumentSchema
 from kotti.views.form import AddFormView
 from kotti.views.form import EditFormView
-from kotti.views.util import is_root
 from pyramid.view import view_config
 from pyramid.view import view_defaults
 
 from kotti_multilingual import _
 from kotti_multilingual.resources import LanguageSection
-from kotti_multilingual.fanstatic import kotti_multilingual
 from kotti_multilingual.views import BaseView
 
 

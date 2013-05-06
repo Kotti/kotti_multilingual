@@ -1,12 +1,12 @@
-<li class="pull-right dropdown">
+<li xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    class="pull-right dropdown">
   <a class="dropdown-toggle" href="${request.application_url}?_LOCALE_="
      role="menu" data-toggle="dropdown" data-target="#">
     Switch Language
     <b class="caret"></b>
   </a>
-  <ul xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      class="dropdown-menu">
+  <ul class="dropdown-menu">
     <li tal:repeat="section api.language_sections">
       <a href="${section.url}">
           ${section.title}

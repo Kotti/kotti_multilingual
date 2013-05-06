@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="api.macro('kotti:templates/view/master.pt')"
       i18n:domain="kotti_multilingual">
 
@@ -13,7 +16,7 @@
         Select Language
     </h2>
     <ul>
-        <li tal:repeat="l languages">
+        <li tal:repeat="l api.language_sections">
             <a href="${l.url}">${l.title}</a>
         </li>
     </ul>

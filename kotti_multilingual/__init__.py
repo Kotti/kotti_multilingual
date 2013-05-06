@@ -14,6 +14,11 @@ _ = TranslationStringFactory('kotti_multilingual')
 
 
 def kotti_configure(settings):
+    """ Basic Kotti configurator.  Enables content types and locales.
+
+    :param settings: Kotti settings dictionary
+    :type settings: dict
+    """
 
     settings['pyramid.includes'] += ' kotti_multilingual'
 
@@ -26,17 +31,34 @@ def kotti_configure(settings):
 
 
 def kotti_configure_template_api(settings):
+    """ Basic Kotti configurator.  Enables the TemplateAPI.
+
+    :param settings: Kotti settings dictionary
+    :type settings: dict
+    """
 
     settings['kotti.templates.api'] = \
         'kotti_multilingual.views.util.TemplateAPI'
 
 
 def kotti_configure_template_overrides(settings):
+    """ Basic Kotti configurator.  Enables included templates.
+
+    :param settings: Kotti settings dictionary
+    :type settings: dict
+    """
 
     settings['pyramid.includes'] += ' kotti_multilingual.template_overrides'
 
 
 def includeme(config):
+    """
+    Pyramid includme hook.  Don't use it directly but indirectly via the
+    :func:`kotti_configure` hook.
+
+    :param config: Pyramid config object
+    :type config: :class:`pyramid.config.Configurator`
+    """
 
     config.add_translation_dirs('kotti_multilingual:locale')
     config.scan(__name__)

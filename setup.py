@@ -46,13 +46,8 @@ setup(
     install_requires=[
         'Babel',
         'Kotti',
-        'pycountry',
     ],
-    entry_points={
-        'fanstatic.libraries': [
-            'kotti_multilingual = kotti_multilingual.fanstatic:library',
-        ],
-    },
+    entry_points={},
     message_extractors={
         'kotti_multilingual': [
             ('**.py', 'lingua_python', None),

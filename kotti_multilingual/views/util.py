@@ -17,9 +17,18 @@ log = getLogger(__name__)
 
 
 class TemplateAPI(KottiTemplateAPI):
+    """ TemplateAPI extensions for sites with multilingual content. """
 
     @property
     def language_root(self):
+        """
+        Root object for the current language's content subtree.  If used in a
+        language neutral context, the site root will be returned.
+
+        :result:
+        :rtype: :class:`kotti_multilingual.resources.LanguageSection` or
+                :class:`kotti.resources.Content` or descendant.
+        """
 
         if not (hasattr(self.context, 'language') and self.context.language):
             return self.root
@@ -30,6 +39,12 @@ class TemplateAPI(KottiTemplateAPI):
 
     @property
     def language_sections(self):
+        """
+        Language sections that are visible for the user.
+
+        :result: A sequence of dictionaries representing the language sections.
+        :rtype: list of dict
+        """
 
         selected_language = getattr(self.context, 'language', None)
 

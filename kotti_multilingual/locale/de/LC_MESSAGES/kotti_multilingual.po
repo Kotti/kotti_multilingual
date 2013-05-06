@@ -1,0 +1,32 @@
+# German translations for kotti_multilingual.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the kotti_multilingual
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kotti_multilingual 0.1dev\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-05-06 15:07+0200\n"
+"PO-Revision-Date: 2013-05-06 15:07+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: kotti_multilingual/resources.py:36
+msgid "Language Section"
+msgstr "Sprachsektion"
+
+#: kotti_multilingual/views/content.py:26
+msgid "Language"
+msgstr "Sprache"
+
+#: kotti_multilingual/views/content.py:37
+msgid "LanguageSection"
+msgstr "Sprachsektion"
+

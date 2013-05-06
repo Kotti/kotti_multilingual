@@ -1,0 +1,32 @@
+# Translations template for kotti_multilingual.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the kotti_multilingual
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: kotti_multilingual 0.1dev\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2013-05-06 15:07+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+
+#: kotti_multilingual/resources.py:36
+msgid "Language Section"
+msgstr ""
+
+#: kotti_multilingual/views/content.py:26
+msgid "Language"
+msgstr ""
+
+#: kotti_multilingual/views/content.py:37
+msgid "LanguageSection"
+msgstr ""
+
