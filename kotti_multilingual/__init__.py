@@ -30,27 +30,6 @@ def kotti_configure(settings):
     Image.type_info.addable_to.append('LanguageSection')
 
 
-def kotti_configure_template_api(settings):
-    """ Basic Kotti configurator.  Enables the TemplateAPI.
-
-    :param settings: Kotti settings dictionary
-    :type settings: dict
-    """
-
-    settings['kotti.templates.api'] = \
-        'kotti_multilingual.views.util.TemplateAPI'
-
-
-def kotti_configure_template_overrides(settings):
-    """ Basic Kotti configurator.  Enables included templates.
-
-    :param settings: Kotti settings dictionary
-    :type settings: dict
-    """
-
-    settings['pyramid.includes'] += ' kotti_multilingual.template_overrides'
-
-
 def includeme(config):
     """
     Pyramid includme hook.  Don't use it directly but indirectly via the

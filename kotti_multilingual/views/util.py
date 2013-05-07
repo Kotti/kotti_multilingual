@@ -8,7 +8,9 @@ Created on 2013-05-06
 from logging import getLogger
 
 from babel import Locale
-from kotti.views.util import TemplateAPI as KottiTemplateAPI
+from kotti.security import has_permission
+from pyramid.events import BeforeRender
+from pyramid.events import subscriber
 
 from kotti_multilingual.resources import LanguageSection
 
@@ -16,49 +18,37 @@ from kotti_multilingual.resources import LanguageSection
 log = getLogger(__name__)
 
 
-class TemplateAPI(KottiTemplateAPI):
-    """ TemplateAPI extensions for sites with multilingual content. """
+def language_sections(context, request):
+    """
+    Language sections that are visible for the user.
 
-    @property
-    def language_root(self):
-        """
-        Root object for the current language's content subtree.  If used in a
-        language neutral context, the site root will be returned.
+    :result: A sequence of dictionaries representing the language sections.
+    :rtype: list of dict
+    """
 
-        :result:
-        :rtype: :class:`kotti_multilingual.resources.LanguageSection` or
-                :class:`kotti.resources.Content` or descendant.
-        """
+    selected_language = getattr(context, 'language', None)
 
-        if not (hasattr(self.context, 'language') and self.context.language):
-            return self.root
+    languages = []
 
-        return LanguageSection.query \
-            .filter(LanguageSection.language == self.context.language) \
-            .one()
+    for l in LanguageSection.query.all():
+        if has_permission('view', l, request):
+            languages.append({
+                'id': l.language,
+                'selected': l.language == selected_language,
+                'title': Locale(l.language).get_display_name(l.language),
+                'url': request.resource_url(l),
+            })
 
-    @property
-    def language_sections(self):
-        """
-        Language sections that are visible for the user.
+    languages.sort(key=lambda l: l['title'])
 
-        :result: A sequence of dictionaries representing the language sections.
-        :rtype: list of dict
-        """
+    return languages
 
-        selected_language = getattr(self.context, 'language', None)
 
-        languages = []
-
-        for l in LanguageSection.query.all():
-            if self.has_permission('view', l):
-                languages.append({
-                    'id': l.language,
-                    'selected': l.language == selected_language,
-                    'title': Locale(l.language).get_display_name(l.language),
-                    'url': self.url(l),
-                })
-
-        languages.sort(key=lambda l: l['title'])
-
-        return languages
+@subscriber(BeforeRender)
+def add_renderer_globals(event):
+    if event['renderer_name'] != 'json':
+        request = event['request']
+        sections = getattr(request, 'language_sections', None)
+        if sections is None and request is not None:
+            sections = language_sections(event['context'], event['request'])
+        event['language_sections'] = sections

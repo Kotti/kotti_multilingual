@@ -6,6 +6,7 @@ Created on 2013-05-05
 """
 
 from kotti.interfaces import IDefaultWorkflow
+from kotti.interfaces import INavigationRoot
 from kotti.resources import Document
 from kotti.resources import TypeInfo
 from sqlalchemy import Column
@@ -44,7 +45,7 @@ type_info = LanguageSectionTypeInfo(
 class LanguageSection(Document):
     """ Root for a language specific subtree. """
 
-    implements(IDefaultWorkflow)
+    implements(IDefaultWorkflow, INavigationRoot)
 
     id = Column(
         Integer(),
