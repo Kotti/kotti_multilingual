@@ -7,7 +7,7 @@
     <b class="caret"></b>
   </a>
   <ul class="dropdown-menu">
-    <li tal:repeat="section api.language_sections">
+    <li tal:repeat="section language_sections">
       <a href="${section.url}">
           ${section.title}
           <i class="pull-right icon-ok" tal:condition="section.selected"></i>
