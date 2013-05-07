@@ -8,7 +8,7 @@ Created on 2013-05-05
 from kotti.resources import get_root
 
 from kotti_multilingual.resources import LanguageSection
-from kotti_multilingual.views import LanguageSectionView
+from kotti_multilingual.views.content import LanguageSectionView
 
 
 def test_views(db_session, dummy_request):
@@ -20,4 +20,3 @@ def test_views(db_session, dummy_request):
     view = LanguageSectionView(root['content'], dummy_request)
 
     assert view.view() == {}
-    assert view.alternative_view() == {}
