@@ -24,11 +24,6 @@ content that is created in (or moved into) such a subtree will be automatically
 tagged with the language of the section.  This is done by subscribing to
 Kotti's ``ObjectInsert`` and ``ObjectUpdate`` events.
 
-The package also extends Kotti's ``TemplateAPI`` with an additional
-``language_root`` attribute that can be used as the navigation root for the
-currently selected language.  The included ``language_nav.pt`` template makes
-use of that attribute.
-
 You can place ``LanguageSection`` instances wherever you want in your content
 tree, but it is considered best practice to have a tree structure like this::
 
@@ -42,9 +37,9 @@ Setup
 =====
 
 To activate the ``kotti_multilingual`` add-on in your Kotti site, you need to
-add **one or more** entries to the ``kotti.configurators`` setting in your
-Paste Deploy config.  If you don't have a ``kotti.configurators`` option,
-add one.  The added entry should look like this::
+add an entry to the ``kotti.configurators`` setting in your Paste Deploy config.
+If you don't have a ``kotti.configurators`` option, add one.  The added entry
+should look like this::
 
     kotti.configurators = kotti_multilingual.kotti_configure
 
