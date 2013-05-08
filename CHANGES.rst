@@ -1,6 +1,16 @@
 Changelog
 =========
 
+0.1a3 - 2013-05-08
+------------------
+
+-   Rename ``LanguageSection`` to ``LanguageRoot`` to better fit Kotti's
+    ``INavigationRoot``.  This implies a change in the DB schema for which no
+    automatic schema migration is available; you'll have to rename the table
+    ``language_sections`` to ``language_roots`` yourself.
+
+-   Add some tests.
+
 0.1a2 - 2013-05-07
 ------------------
 

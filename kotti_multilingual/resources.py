@@ -17,32 +17,32 @@ from zope.interface import implements
 from kotti_multilingual import _
 
 
-class LanguageSectionTypeInfo(TypeInfo):
-    """ LanguageSection specific TypeInfo. """
+class LanguageRootTypeInfo(TypeInfo):
+    """ LanguageRoot specific TypeInfo. """
 
     def addable(self, context, request):
         """
         In addition to the restrictions of
-        :func:`kotti.resources.TypeInfo.addable`, a LanguageSection must not be
+        :func:`kotti.resources.TypeInfo.addable`, a LanguageRoot must not be
         added within a parent that already has a language set.
         """
 
         if hasattr(context, 'language') and context.language:
             return False
 
-        return super(LanguageSectionTypeInfo, self).addable(context, request)
+        return super(LanguageRootTypeInfo, self).addable(context, request)
 
-type_info = LanguageSectionTypeInfo(
-    name=u'LanguageSection',
-    title=_(u'Language Section'),
-    add_view=u'add_languagesection',
+type_info = LanguageRootTypeInfo(
+    name=u'LanguageRoot',
+    title=_(u'Language root'),
+    add_view=u'add_language_root',
     addable_to=Document.type_info.addable_to,
     edit_links=Document.type_info.edit_links,
     selectable_default_views=Document.type_info.selectable_default_views
 )
 
 
-class LanguageSection(Document):
+class LanguageRoot(Document):
     """ Root for a language specific subtree. """
 
     implements(IDefaultWorkflow, INavigationRoot)

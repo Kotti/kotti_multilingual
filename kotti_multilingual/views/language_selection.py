@@ -6,19 +6,17 @@ Created on 2013-05-05
 """
 
 from kotti.interfaces import IContent
-from kotti.views.util import is_root
 from pyramid.view import view_config
 from pyramid.view import view_defaults
 
 from kotti_multilingual.views import BaseView
 
 
-@view_defaults(context=IContent, permission='view',
-               custom_predicates=(is_root, ))
+@view_defaults(context=IContent, permission='view', )
 class LanguageSelectionViews(BaseView):
-    """View(s) for LanguageSection"""
+    """View(s) for LanguageRoot"""
 
-    @view_config(name='view',
+    @view_config(name='language-selection',
                  renderer='kotti_multilingual:templates/language-selection.pt')
     def view(self):
 

@@ -12,17 +12,17 @@ from kotti.security import has_permission
 from pyramid.events import BeforeRender
 from pyramid.events import subscriber
 
-from kotti_multilingual.resources import LanguageSection
+from kotti_multilingual.resources import LanguageRoot
 
 
 log = getLogger(__name__)
 
 
-def language_sections(context, request):
+def language_roots(context, request):
     """
-    Language sections that are visible for the user.
+    Language roots that are visible for the user.
 
-    :result: A sequence of dictionaries representing the language sections.
+    :result: A sequence of dictionaries representing the language roots.
     :rtype: list of dict
     """
 
@@ -30,7 +30,7 @@ def language_sections(context, request):
 
     languages = []
 
-    for l in LanguageSection.query.all():
+    for l in LanguageRoot.query.all():
         if has_permission('view', l, request):
             languages.append({
                 'id': l.language,
@@ -48,7 +48,7 @@ def language_sections(context, request):
 def add_renderer_globals(event):
     if event['renderer_name'] != 'json':
         request = event['request']
-        sections = getattr(request, 'language_sections', None)
-        if sections is None and request is not None:
-            sections = language_sections(event['context'], event['request'])
-        event['language_sections'] = sections
+        roots = getattr(request, 'language_roots', None)
+        if roots is None and request is not None:
+            roots = language_roots(event['context'], event['request'])
+        event['language_roots'] = roots

@@ -7,10 +7,10 @@
     <b class="caret"></b>
   </a>
   <ul class="dropdown-menu">
-    <li tal:repeat="section language_sections">
-      <a href="${section.url}">
-          ${section.title}
-          <i class="pull-right icon-ok" tal:condition="section.selected"></i>
+    <li tal:repeat="root language_roots">
+      <a href="${root.url}">
+          ${root.title}
+          <i class="pull-right icon-ok" tal:condition="root.selected"></i>
       </a>
     </li>
   </ul>

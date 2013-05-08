@@ -22,7 +22,7 @@ def test_kotti_configure():
 
     assert settings['pyramid.includes'] == ' kotti_multilingual'
     assert settings['kotti.available_types'] == \
-        ' kotti_multilingual.resources.LanguageSection'
+        ' kotti_multilingual.resources.LanguageRoot'
 
 
 def test_includeme(config):

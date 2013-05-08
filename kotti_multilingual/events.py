@@ -47,12 +47,12 @@ def _set_language_to_same_as_parent(context, recurse=True):
     :type recurse: bool
     """
 
-    if context.type == 'language_section':
-        # LanguageSection instances must not be within another LanguageSection
+    if context.type == 'language_root':
+        # LanguageRoot instances must not be within another LanguageRoot
         if context.parent.language is not None:
             raise HTTPForbidden
     else:
-        # LanguageSection instances' language must not be set to None.
+        # LanguageRoot instances' language must not be set to None.
         context.language = context.parent.language
 
     if recurse:
@@ -74,7 +74,7 @@ def update_language(event):
 
     if hasattr(context, 'language') and hasattr(context, 'parent') and \
             hasattr(context.parent, 'language') and hasattr(context, 'type') \
-            and (context.type != 'language_section') and \
+            and (context.type != 'language_root') and \
             (context.language != context.parent.language):
 
         _set_language_to_same_as_parent(context)
