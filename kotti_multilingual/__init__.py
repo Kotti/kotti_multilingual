@@ -23,11 +23,11 @@ def kotti_configure(settings):
     settings['pyramid.includes'] += ' kotti_multilingual'
 
     settings['kotti.available_types'] += \
-        ' kotti_multilingual.resources.LanguageSection'
+        ' kotti_multilingual.resources.LanguageRoot'
 
-    Document.type_info.addable_to.append('LanguageSection')
-    File.type_info.addable_to.append('LanguageSection')
-    Image.type_info.addable_to.append('LanguageSection')
+    Document.type_info.addable_to.append('LanguageRoot')
+    File.type_info.addable_to.append('LanguageRoot')
+    Image.type_info.addable_to.append('LanguageRoot')
 
 
 def includeme(config):

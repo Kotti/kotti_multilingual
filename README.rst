@@ -18,20 +18,20 @@ neither feature complete nor can be considered API stable.  Things will change!
 Features
 ========
 
-The package contains a single content type ``LanguageSection`` which is
+The package contains a single content type ``LanguageRoot`` which is
 supposed to be the container of all content in a specific language.  All
 content that is created in (or moved into) such a subtree will be automatically
-tagged with the language of the section.  This is done by subscribing to
+tagged with the language of the root.  This is done by subscribing to
 Kotti's ``ObjectInsert`` and ``ObjectUpdate`` events.
 
-You can place ``LanguageSection`` instances wherever you want in your content
+You can place ``LanguageRoot`` instances wherever you want in your content
 tree, but it is considered best practice to have a tree structure like this::
 
- - /            Document            language neutral
-    - /en       LanguageSection     English
-    - /de       LanguageSection     German
-    - /nl       LanguageSection     Dutch
-    - /images   Document            language neutral
+ - /            Document        language neutral
+    - /en       LanguageRoot    English
+    - /de       LanguageRoot    German
+    - /nl       LanguageRoot    Dutch
+    - /images   Document        language neutral
 
 Setup
 =====

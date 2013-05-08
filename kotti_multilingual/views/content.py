@@ -14,12 +14,12 @@ from pyramid.view import view_config
 from pyramid.view import view_defaults
 
 from kotti_multilingual import _
-from kotti_multilingual.resources import LanguageSection
+from kotti_multilingual.resources import LanguageRoot
 from kotti_multilingual.views import BaseView
 
 
-class LanguageSectionSchema(DocumentSchema):
-    """Schema for add / edit forms of LanguageSection"""
+class LanguageRootSchema(DocumentSchema):
+    """Schema for add / edit forms of LanguageRoot"""
 
     language = SchemaNode(
         String(),
@@ -27,28 +27,28 @@ class LanguageSectionSchema(DocumentSchema):
     )
 
 
-@view_config(name=LanguageSection.type_info.add_view,
+@view_config(name=LanguageRoot.type_info.add_view,
              permission='add',
              renderer='kotti:templates/edit/node.pt')
-class LanguageSectionAddForm(AddFormView):
+class LanguageRootAddForm(AddFormView):
 
-    schema_factory = LanguageSectionSchema
-    add = LanguageSection
-    item_type = _(u"LanguageSection")
+    schema_factory = LanguageRootSchema
+    add = LanguageRoot
+    item_type = _(u"Language Root")
 
 
 @view_config(name='edit',
-             context=LanguageSection,
+             context=LanguageRoot,
              permission='edit',
              renderer='kotti:templates/edit/node.pt')
-class LanguageSectionEditForm(EditFormView):
+class LanguageRootEditForm(EditFormView):
 
-    schema_factory = LanguageSectionSchema
+    schema_factory = LanguageRootSchema
 
 
-@view_defaults(context=LanguageSection, permission='view')
-class LanguageSectionView(BaseView):
-    """View(s) for LanguageSection"""
+@view_defaults(context=LanguageRoot, permission='view')
+class LanguageRootView(BaseView):
+    """View(s) for LanguageRoot"""
 
     @view_config(name='view',
                  renderer='kotti:templates/view/document.pt')

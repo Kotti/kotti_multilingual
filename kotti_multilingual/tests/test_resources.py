@@ -8,13 +8,13 @@ Created on 2013-05-05
 from kotti.resources import get_root
 from kotti.testing import DummyRequest
 
-from kotti_multilingual.resources import LanguageSection
+from kotti_multilingual.resources import LanguageRoot
 
 
-def test_languagesection(db_session, config):
+def test_LanguageRoot(db_session, config):
     config.include('kotti_multilingual')
 
     root = get_root()
-    content = LanguageSection()
+    content = LanguageRoot()
     assert content.type_info.addable(root, DummyRequest()) is True
     root['content'] = content

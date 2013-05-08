@@ -7,16 +7,16 @@ Created on 2013-05-05
 
 from kotti.resources import get_root
 
-from kotti_multilingual.resources import LanguageSection
-from kotti_multilingual.views.content import LanguageSectionView
+from kotti_multilingual.resources import LanguageRoot
+from kotti_multilingual.views.content import LanguageRootView
 
 
 def test_views(db_session, dummy_request):
 
     root = get_root()
-    content = LanguageSection()
+    content = LanguageRoot()
     root['content'] = content
 
-    view = LanguageSectionView(root['content'], dummy_request)
+    view = LanguageRootView(root['content'], dummy_request)
 
     assert view.view() == {}

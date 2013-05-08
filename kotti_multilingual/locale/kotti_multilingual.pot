@@ -7,9 +7,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: kotti_multilingual 0.1a2dev\n"
+"Project-Id-Version: kotti_multilingual 0.1a3dev\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2013-05-06 17:54+0200\n"
+"POT-Creation-Date: 2013-05-08 11:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: kotti_multilingual/resources.py:36
-msgid "Language Section"
+#: kotti_multilingual/resources.py:37
+msgid "Language root"
 msgstr ""
 
 #: kotti_multilingual/views/content.py:26
@@ -27,6 +27,6 @@ msgid "Language"
 msgstr ""
 
 #: kotti_multilingual/views/content.py:37
-msgid "LanguageSection"
+msgid "Language Root"
 msgstr ""
 
