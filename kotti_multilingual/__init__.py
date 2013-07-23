@@ -9,6 +9,8 @@ from kotti.resources import Document
 from kotti.resources import File
 from kotti.resources import Image
 from pyramid.i18n import TranslationStringFactory
+from sqlalchemy import event
+from sqlalchemy.orm import mapper
 
 _ = TranslationStringFactory('kotti_multilingual')
 
@@ -19,6 +21,7 @@ def kotti_configure(settings):
     :param settings: Kotti settings dictionary
     :type settings: dict
     """
+    from .sqla import attach_language_independent_fields
 
     settings['pyramid.includes'] += ' kotti_multilingual'
 
@@ -28,6 +31,12 @@ def kotti_configure(settings):
     Document.type_info.addable_to.append('LanguageRoot')
     File.type_info.addable_to.append('LanguageRoot')
     Image.type_info.addable_to.append('LanguageRoot')
+
+    File.type_info.language_independent_fields = ('data',)
+    Image.type_info.language_independent_fields = ('data',)
+
+    event.listen(
+        mapper, 'mapper_configured', attach_language_independent_fields)
 
 
 def includeme(config):

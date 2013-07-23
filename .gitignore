@@ -1,0 +1,9 @@
+.cache/
+.coverage
+Kotti.db
+bin/
+include/
+kotti_multilingual.egg-info/
+lib/
+local/
+*pyc
