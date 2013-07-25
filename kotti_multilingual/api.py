@@ -41,7 +41,7 @@ def get_languages(request=None):
     """
     languages = []
 
-    for l in LanguageRoot.query.all():
+    for l in LanguageRoot.query.order_by(LanguageRoot.position):
         if (request != None and not has_permission('view', l, request)):
             continue
         lang_root = {

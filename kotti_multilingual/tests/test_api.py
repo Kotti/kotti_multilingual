@@ -81,3 +81,27 @@ def test_get_languages_no_permissions(config, root, dummy_request):
         {'id': u'de', 'title': u'Deutsch', 'url': u'http://example.com/de/'}]
     config.testing_securitypolicy(permissive=False)
     assert get_languages(dummy_request) == []
+
+
+def test_get_languages_order(root, dummy_request):
+    from kotti_multilingual.api import get_languages
+    from kotti_multilingual.resources import LanguageRoot
+
+    root['de'] = LanguageRoot(language=u'de')
+    root['sl'] = LanguageRoot(language=u'sl')
+    root['hu'] = LanguageRoot(language=u'hu')
+
+    assert get_languages() == [
+        {'id': u'de', 'title': u'Deutsch'},
+        {'id': u'sl', 'title': u'sloven\u0161\u010dina'},
+        {'id': u'hu', 'title': u'magyar'}
+    ]
+
+    de, sl, hu = root.values()
+    root.children[:] = [sl, hu, de]
+
+    assert get_languages() == [
+        {'id': u'sl', 'title': u'sloven\u0161\u010dina'},
+        {'id': u'hu', 'title': u'magyar'},
+        {'id': u'de', 'title': u'Deutsch'}
+    ]
