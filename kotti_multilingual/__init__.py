@@ -5,9 +5,11 @@ Created on 2013-05-05
 :author: Andreas Kaiser (disko)
 """
 
+from kotti.resources import Content
 from kotti.resources import Document
 from kotti.resources import File
 from kotti.resources import Image
+from kotti.util import LinkRenderer
 from pyramid.i18n import TranslationStringFactory
 from sqlalchemy import event
 from sqlalchemy.orm import mapper
@@ -28,6 +30,12 @@ def kotti_configure(settings):
     settings['kotti.available_types'] += \
         ' kotti_multilingual.resources.LanguageRoot'
 
+    Content.type_info.edit_links.append(
+        LinkRenderer(
+            name='translation-dropdown',
+            predicate=lambda context, request: context.language is not None
+        )
+    )
     Document.type_info.addable_to.append('LanguageRoot')
     File.type_info.addable_to.append('LanguageRoot')
     Image.type_info.addable_to.append('LanguageRoot')

@@ -71,7 +71,6 @@ def update_language(event):
     """
 
     context = event.object
-
     if hasattr(context, 'language') and hasattr(context, 'parent') and \
             hasattr(context.parent, 'language') and hasattr(context, 'type') \
             and (context.type != 'language_root') and \

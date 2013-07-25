@@ -40,6 +40,10 @@ class Translation(Base):
         primaryjoin='Translation.target_id == Content.id',
         )
 
+    def __repr__(self):
+        return "<{0} from {1} to {2}".format(
+            self.__class__.__name__, self.source, self.target)
+
 
 class LanguageRootTypeInfo(TypeInfo):
     """ LanguageRoot specific TypeInfo. """
