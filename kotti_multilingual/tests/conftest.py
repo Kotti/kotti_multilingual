@@ -42,7 +42,7 @@ def multilingual_doc(request, config, root):
 def translated_docs(multilingual_doc, db_session):
     from kotti_multilingual.resources import Translation
 
-    translation = multilingual_doc['translation'] = Document(language='sl')
+    translation = multilingual_doc['translation'] = Document(language=u'sl')
     db_session.add(Translation(source=multilingual_doc, target=translation))
 
     db_session.flush()  # o_O

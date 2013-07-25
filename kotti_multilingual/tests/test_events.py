@@ -29,6 +29,6 @@ def test_set_context_locale():
         set_context_locale(DummyEvent(request))
         request._LOCALE_
 
-    request = DummyRequest(context=DummyResource(language='en'))
+    request = DummyRequest(context=DummyResource(language=u'en'))
     set_context_locale(DummyEvent(request))
     assert request._LOCALE_ == 'en'

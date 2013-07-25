@@ -7,10 +7,10 @@
     <b class="caret"></b>
   </a>
   <ul class="dropdown-menu">
-    <li tal:repeat="root language_roots">
-      <a href="${root.url}">
-          ${root.title}
-          <i class="pull-right icon-ok" tal:condition="root.selected"></i>
+    <li tal:repeat="lang languages">
+      <a href="${lang.url}">
+          ${lang.title}
+          <i class="pull-right icon-ok" tal:condition="lang.id == context.language"></i>
       </a>
     </li>
   </ul>
