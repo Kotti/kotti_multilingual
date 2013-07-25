@@ -4,6 +4,8 @@ from kotti.resources import DBSession
 from kotti_multilingual.resources import LanguageRoot
 from kotti_multilingual.resources import Translation
 from kotti.security import has_permission
+from sqlalchemy import and_
+from sqlalchemy import or_
 
 
 def get_source(content):
@@ -15,9 +17,12 @@ def get_source(content):
 
 def get_translations(content):
     query = DBSession.query(Translation, Content).filter(
-        Translation.source_id == content.id,
-        Content.id == Translation.target_id,
-        )
+        or_(
+            and_(Translation.source_id == content.id,
+                 Content.id == Translation.target_id),
+            and_(Translation.target_id == content.id,
+                  Content.id == Translation.source_id))
+    )
     return dict((content.language, content) for translation, content in query)
 
 

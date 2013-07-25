@@ -19,6 +19,7 @@ def test_get_translations(translated_docs, db_session):
 
     source, target = translated_docs
     assert get_translations(source) == {'sl': target}
+    assert get_translations(target) == {'en': source}
 
 
 def test_get_translations_none(root, db_session):
@@ -27,11 +28,11 @@ def test_get_translations_none(root, db_session):
     assert get_translations(root) == {}
 
 
-def test_link_translation(multilingual_doc, db_session):
+def test_link_translation(multilingual_doc, root, db_session):
     from kotti_multilingual.api import link_translation
     from kotti_multilingual.api import get_translations
 
-    doc2 = multilingual_doc['doc2'] = Document(language=u'sl')
+    doc2 = root['sl']['doc2'] = Document(language=u'sl')
     link_translation(multilingual_doc, doc2)
 
     assert get_translations(multilingual_doc) == {'sl': doc2}

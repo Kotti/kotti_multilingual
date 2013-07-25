@@ -6,6 +6,7 @@ Created on 2013-05-05
 """
 
 from kotti.resources import Document
+from kotti_multilingual import api
 from pytest import fixture
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 
@@ -23,27 +24,34 @@ def detach_language_independent_fields(class_):
 
 
 @fixture
-def multilingual_doc(request, config, root):
+def multilingual_doc(request, config, root, db_session, events):
+    from kotti_multilingual.resources import LanguageRoot
+    from kotti_multilingual.resources import Translation
     from kotti_multilingual.sqla import attach_language_independent_fields
 
     config.include('kotti_multilingual')
     Document.type_info.language_independent_fields = ('body',)
     attach_language_independent_fields(None, Document)
+    en = root['en'] = LanguageRoot(language=u'en', title=u'English root')
+    sl = root['sl'] = LanguageRoot(language=u'sl', title=u'Slovenian root')
+    db_session.add(Translation(source=en, target=sl))
+    en['doc'] = Document(title=u'English doc')
 
     def fin():
         detach_language_independent_fields(Document)
         del Document.type_info.language_independent_fields
 
     request.addfinalizer(fin)
-    return root
+    return en['doc']
 
 
 @fixture
-def translated_docs(multilingual_doc, db_session):
+def translated_docs(multilingual_doc, db_session, root, events):
     from kotti_multilingual.resources import Translation
 
-    translation = multilingual_doc['translation'] = Document(language=u'sl')
-    db_session.add(Translation(source=multilingual_doc, target=translation))
+    sl = root['sl']
+    doc = sl['translation'] = Document(title=u'Slovenian translation')
+    db_session.add(Translation(source=multilingual_doc, target=doc))
 
     db_session.flush()  # o_O
-    return multilingual_doc, translation
+    return multilingual_doc, doc
