@@ -51,9 +51,13 @@ def get_languages(request=None):
             continue
         lang_root = {
             'id': l.language,
-            'title': Locale(l.language).get_display_name(l.language),
+            'title': get_language_title(l.language),
         }
         if request != None:
             lang_root['url'] = request.resource_url(l)
         languages.append(lang_root)
     return languages
+
+
+def get_language_title(language_code):
+    return Locale(language_code).get_display_name(language_code)

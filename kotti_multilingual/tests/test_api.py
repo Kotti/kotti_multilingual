@@ -106,3 +106,9 @@ def test_get_languages_order(root, dummy_request):
         {'id': u'hu', 'title': u'magyar'},
         {'id': u'de', 'title': u'Deutsch'}
     ]
+
+
+def test_get_language_title(root):
+    from kotti_multilingual.api import get_language_title
+
+    assert get_language_title(u'en') == u'English'
