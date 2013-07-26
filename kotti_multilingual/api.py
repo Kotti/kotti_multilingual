@@ -9,6 +9,11 @@ from sqlalchemy import or_
 
 
 def get_source(content):
+    """Given a translation target, this returns the translation source
+    or None.
+
+    If ``content`` is the source, this returns ``None``.
+    """
     translation = DBSession.query(Translation).filter_by(
         target_id=content.id).first()
     if translation is not None:
@@ -16,14 +21,20 @@ def get_source(content):
 
 
 def get_translations(content):
+    source = get_source(content)
+    if source is None:
+        source = content
+
     query = DBSession.query(Translation, Content).filter(
-        or_(
-            and_(Translation.source_id == content.id,
-                 Content.id == Translation.target_id),
-            and_(Translation.target_id == content.id,
-                  Content.id == Translation.source_id))
-    )
-    return dict((content.language, content) for translation, content in query)
+        Translation.source_id == source.id,
+        Content.id == Translation.target_id,
+        )
+    res = dict((content.language, content) for translation, content in query)
+    res.pop(content.language, None)
+    if source is not content:
+        res[source.language] = source
+
+    return res
 
 
 def link_translation(source, target):

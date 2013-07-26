@@ -22,6 +22,19 @@ def test_get_translations(translated_docs, db_session):
     assert get_translations(target) == {'en': source}
 
 
+def test_get_translations_alotta(translated_docs, root, db_session):
+    from kotti_multilingual.api import get_translations
+    from kotti_multilingual.api import link_translation
+    from kotti_multilingual.resources import LanguageRoot
+
+    source, target = translated_docs
+    fr = root['fr'] = LanguageRoot(language=u'fr', title=u'Le root')
+    fr['doc'] = Document(title=u'English doc')
+
+    link_translation(source, fr['doc'])
+    assert get_translations(fr['doc']) == {'en': source, 'sl': target}
+
+
 def test_get_translations_none(root, db_session):
     from kotti_multilingual.api import get_translations
 
