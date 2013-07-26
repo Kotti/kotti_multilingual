@@ -23,13 +23,17 @@ def detach_language_independent_fields(class_):
         ia.__class__ = InstrumentedAttribute
 
 
+@fixture(scope='function')
+def ml_events(config, events):
+    config.include('kotti_multilingual')
+
+
 @fixture
-def multilingual_doc(request, config, root, db_session, events):
+def multilingual_doc(request, config, root, db_session, ml_events):
     from kotti_multilingual.resources import LanguageRoot
     from kotti_multilingual.resources import Translation
     from kotti_multilingual.sqla import attach_language_independent_fields
 
-    config.include('kotti_multilingual')
     Document.type_info.language_independent_fields = ('body',)
     attach_language_independent_fields(None, Document)
     en = root['en'] = LanguageRoot(language=u'en', title=u'English root')
