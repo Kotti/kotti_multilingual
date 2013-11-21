@@ -28,8 +28,8 @@ class Translation(Base):
         UniqueConstraint('source_id', 'target_id'),
         )
     id = Column(Integer(), primary_key=True)
-    source_id = Column(ForeignKey('contents.id'))
-    target_id = Column(ForeignKey('contents.id'))
+    source_id = Column(ForeignKey('contents.id', ondelete='CASCADE'))
+    target_id = Column(ForeignKey('contents.id', ondelete='CASCADE'))
 
     source = relation(
         'Content',
