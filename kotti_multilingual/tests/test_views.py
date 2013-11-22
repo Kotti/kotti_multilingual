@@ -20,3 +20,12 @@ def test_views(db_session, dummy_request):
     view = LanguageRootView(root['content'], dummy_request)
 
     assert view.view() == {}
+
+
+def test_forbid_unkown_language():
+    import pytest
+    from kotti_multilingual.views.content import LanguageRootSchema
+    from colander import Invalid
+    schema = LanguageRootSchema()
+    with pytest.raises(Invalid):
+        schema.deserialize(dict(language='dummy_lang', title='dummy_title'))
