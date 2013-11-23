@@ -30,7 +30,8 @@ def available_language(node, value):
         get_language_title(value)
     except UnknownLocaleError:
         raise Invalid(node,
-                      '%r is not a valid language' % value)
+                      _(u"${lang} is not a valid language",
+                        mapping={'lang': value}))
 
 
 class LanguageRootSchema(DocumentSchema):
