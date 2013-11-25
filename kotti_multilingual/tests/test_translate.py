@@ -41,6 +41,7 @@ def test_translation_dropdown_translatable_into(
         'translatable_into': [{
             'language': u'sl',
             'title': u'sloven\u0161\u010dina',
-            'url': u'http://example.com/sl/add-translation?id=4',
+            'url': u'http://example.com/sl/add-translation?id=%s'
+            % multilingual_doc.id,
         }]
     }
