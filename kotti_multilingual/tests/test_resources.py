@@ -18,3 +18,17 @@ def test_LanguageRoot(db_session, config):
     content = LanguageRoot()
     assert content.type_info.addable(root, DummyRequest()) is True
     root['content'] = content
+
+
+def test_translation_deleted_by_trigger(db_session):
+    from kotti_multilingual.resources import Translation
+    lang1 = LanguageRoot(title='fr', name='name')
+    lang2 = LanguageRoot(title='en', name='name')
+    db_session.add_all([lang1, lang2])
+    db_session.flush()
+    trans = Translation(source_id=lang1.id, target_id=lang2.id)
+    db_session.add(trans)
+    db_session.flush()
+    db_session.delete(lang1)
+    db_session.flush()
+    assert db_session.query(Translation).count() == 0

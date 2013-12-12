@@ -16,8 +16,8 @@
         Select Language
     </h2>
     <ul>
-        <li tal:repeat="l language_roots">
-            <a href="${l.url}">${l.title}</a>
+        <li tal:repeat="lang languages">
+            <a href="${lang.url}">${lang.title}</a>
         </li>
     </ul>
   </article>

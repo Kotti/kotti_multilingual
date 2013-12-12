@@ -7,14 +7,42 @@ Created on 2013-05-05
 
 from kotti.interfaces import IDefaultWorkflow
 from kotti.interfaces import INavigationRoot
+from kotti.resources import Base
 from kotti.resources import Document
 from kotti.resources import TypeInfo
 from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
+from sqlalchemy import UniqueConstraint
+from sqlalchemy.orm import relation
 from zope.interface import implements
 
 from kotti_multilingual import _
+
+
+class Translation(Base):
+    """The translation table maps between translation sources and
+    translation targets.
+    """
+    __table_args__ = (
+        UniqueConstraint('source_id', 'target_id'),
+        )
+    id = Column(Integer(), primary_key=True)
+    source_id = Column(ForeignKey('contents.id', ondelete='CASCADE'))
+    target_id = Column(ForeignKey('contents.id', ondelete='CASCADE'))
+
+    source = relation(
+        'Content',
+        primaryjoin='Translation.source_id == Content.id',
+        )
+    target = relation(
+        'Content',
+        primaryjoin='Translation.target_id == Content.id',
+        )
+
+    def __repr__(self):
+        return "<{0} from {1} to {2}".format(
+            self.__class__.__name__, self.source, self.target)
 
 
 class LanguageRootTypeInfo(TypeInfo):

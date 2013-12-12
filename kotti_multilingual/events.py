@@ -5,17 +5,16 @@ Created on 2013-05-06
 :author: Andreas Kaiser (disko)
 """
 
-from logging import getLogger
-
 from kotti.events import ObjectInsert
 from kotti.events import ObjectUpdate
 from kotti.events import subscribe
+from kotti.resources import DBSession
 from pyramid.events import ContextFound
 from pyramid.events import subscriber
 from pyramid.httpexceptions import HTTPForbidden
 
-
-log = getLogger(__name__)
+from kotti_multilingual import api
+from kotti_multilingual.resources import LanguageRoot
 
 
 @subscriber(ContextFound)
@@ -71,10 +70,24 @@ def update_language(event):
     """
 
     context = event.object
-
     if hasattr(context, 'language') and hasattr(context, 'parent') and \
             hasattr(context.parent, 'language') and hasattr(context, 'type') \
             and (context.type != 'language_root') and \
             (context.language != context.parent.language):
 
         _set_language_to_same_as_parent(context)
+
+
+@subscribe(ObjectInsert, LanguageRoot)
+def autolink_language_root(event):
+    context = event.object
+
+    lr = DBSession.query(LanguageRoot).first()
+    if lr is None:
+        return
+
+    source = api.get_source(lr)
+    if source is None:
+        source = lr
+
+    api.link_translation(source, context)

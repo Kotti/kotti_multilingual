@@ -1,0 +1,31 @@
+<li xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    class="dropdown"
+    tal:condition="translatable_into or translations">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    Translate
+    <b class="caret"></b>
+  </a>
+  <ul class="dropdown-menu">
+      <li i18n:translate="" class="nav-header"
+          tal:condition="translatable_into">
+        Translate into
+      </li>
+      <li tal:repeat="lang translatable_into">
+        <a href="${lang.url}">
+          ${lang.title}
+          <i class="pull-right icon-ok" tal:condition="lang.language == context.language"></i>
+        </a>
+      </li>
+      <li i18n:translate="" class="nav-header"
+          tal:condition="translations">
+        Existing translations
+      </li>
+      <li tal:repeat="translation translations">
+        <a href="${translation.url}">
+          ${translation.title}
+          <i class="pull-right icon-ok" tal:condition="translation.language == context.language"></i>
+        </a>
+      </li>
+  </ul>
+</li>
