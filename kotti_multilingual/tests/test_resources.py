@@ -9,6 +9,7 @@ from kotti.resources import get_root
 from kotti.testing import DummyRequest
 
 from kotti_multilingual.resources import LanguageRoot
+from kotti_multilingual.resources import Translation
 
 
 def test_LanguageRoot(db_session, config):
@@ -21,7 +22,6 @@ def test_LanguageRoot(db_session, config):
 
 
 def test_translation_deleted_by_trigger(db_session):
-    from kotti_multilingual.resources import Translation
     lang1 = LanguageRoot(title='fr', name='name')
     lang2 = LanguageRoot(title='en', name='name')
     db_session.add_all([lang1, lang2])

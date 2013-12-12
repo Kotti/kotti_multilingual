@@ -14,7 +14,8 @@ from sqlalchemy import Column
 from sqlalchemy import ForeignKey
 from sqlalchemy import Integer
 from sqlalchemy import UniqueConstraint
-from sqlalchemy.orm import relation
+from sqlalchemy.orm import backref
+from sqlalchemy.orm import relationship
 from zope.interface import implements
 
 from kotti_multilingual import _
@@ -28,16 +29,20 @@ class Translation(Base):
         UniqueConstraint('source_id', 'target_id'),
         )
     id = Column(Integer(), primary_key=True)
-    source_id = Column(ForeignKey('contents.id', ondelete='CASCADE'))
-    target_id = Column(ForeignKey('contents.id', ondelete='CASCADE'))
+    source_id = Column(ForeignKey('contents.id'))
+    target_id = Column(ForeignKey('contents.id'))
 
-    source = relation(
+    source = relationship(
         'Content',
         primaryjoin='Translation.source_id == Content.id',
+        backref=backref(
+            'translation_targets', cascade="all, delete, delete-orphan")
         )
-    target = relation(
+    target = relationship(
         'Content',
         primaryjoin='Translation.target_id == Content.id',
+        backref=backref(
+            'translation_source', cascade="all, delete, delete-orphan")
         )
 
     def __repr__(self):
