@@ -1,11 +1,12 @@
+# -*- coding: utf-8 -*-
+
 from babel import Locale
 from kotti.resources import Content
 from kotti.resources import DBSession
+from kotti.security import has_permission
+
 from kotti_multilingual.resources import LanguageRoot
 from kotti_multilingual.resources import Translation
-from kotti.security import has_permission
-from sqlalchemy import and_
-from sqlalchemy import or_
 
 
 def get_source(content):

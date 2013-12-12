@@ -1,11 +1,14 @@
+# -*- coding: utf-8 -*-
+
 from kotti.interfaces import IContent
 from kotti.resources import Content
 from kotti.resources import DBSession
-from kotti_multilingual import api
 from pyramid.httpexceptions import HTTPFound
 from pyramid.location import lineage
 from pyramid.security import has_permission
 from pyramid.view import view_config
+
+from kotti_multilingual import api
 
 
 @view_config(

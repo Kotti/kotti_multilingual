@@ -6,9 +6,10 @@ Created on 2013-05-06
 """
 
 from logging import getLogger
-from kotti_multilingual.api import get_languages
 from pyramid.events import BeforeRender
 from pyramid.events import subscriber
+
+from kotti_multilingual.api import get_languages
 
 
 log = getLogger(__name__)

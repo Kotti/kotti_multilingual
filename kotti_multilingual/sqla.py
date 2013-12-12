@@ -1,9 +1,9 @@
+# -*- coding: utf-8 -*-
+
 from kotti.resources import Content
-from kotti.resources import DBSession
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 
-from .api import get_source
-from .resources import Translation
+from kotti_multilingual.api import get_source
 
 
 class SharedInstrumentedAttribute(InstrumentedAttribute):
