@@ -45,7 +45,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'Babel',
-        'Kotti>=0.9a3dev',
+        'Kotti>=0.10dev',
     ],
     entry_points={},
     message_extractors={
