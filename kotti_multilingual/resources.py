@@ -4,6 +4,7 @@
 Created on 2013-05-05
 :author: Andreas Kaiser (disko)
 """
+from copy import copy
 
 from kotti.interfaces import IDefaultWorkflow
 from kotti.interfaces import INavigationRoot
@@ -69,9 +70,9 @@ type_info = LanguageRootTypeInfo(
     name=u'LanguageRoot',
     title=_(u'Language root'),
     add_view=u'add_language_root',
-    addable_to=list(Document.type_info.addable_to),
-    edit_links=list(Document.type_info.edit_links),
-    selectable_default_views=list(Document.type_info.selectable_default_views)
+    addable_to=copy(Document.type_info.addable_to),
+    edit_links=copy(Document.type_info.edit_links),
+    selectable_default_views=copy(Document.type_info.selectable_default_views)
 )
 
 
