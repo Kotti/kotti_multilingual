@@ -69,9 +69,9 @@ type_info = LanguageRootTypeInfo(
     name=u'LanguageRoot',
     title=_(u'Language root'),
     add_view=u'add_language_root',
-    addable_to=Document.type_info.addable_to,
-    edit_links=Document.type_info.edit_links,
-    selectable_default_views=Document.type_info.selectable_default_views
+    addable_to=list(Document.type_info.addable_to),
+    edit_links=list(Document.type_info.edit_links),
+    selectable_default_views=list(Document.type_info.selectable_default_views)
 )
 
 

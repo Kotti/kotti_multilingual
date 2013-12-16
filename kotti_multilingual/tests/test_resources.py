@@ -5,7 +5,7 @@ Created on 2013-05-05
 :author: Andreas Kaiser (disko)
 """
 
-from kotti.resources import get_root
+from kotti.resources import Document, get_root
 from kotti.testing import DummyRequest
 
 from kotti_multilingual.resources import LanguageRoot
@@ -32,3 +32,11 @@ def test_translation_deleted_by_trigger(db_session):
     db_session.delete(lang1)
     db_session.flush()
     assert db_session.query(Translation).count() == 0
+
+
+def test_type_info_isolation():
+    language_root_ti = LanguageRoot.type_info
+    document_ti = Document.type_info
+    for attr in LanguageRoot.type_info.__dict__:
+        assert getattr(language_root_ti, attr) is not \
+            getattr(document_ti, attr)
