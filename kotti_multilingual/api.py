@@ -15,8 +15,9 @@ def get_source(content):
 
     If ``content`` is the source, this returns ``None``.
     """
-    translation = DBSession.query(Translation).filter_by(
-        target_id=content.id).first()
+    with DBSession.no_autoflush:
+        translation = DBSession.query(Translation).filter_by(
+            target_id=content.id).first()
     if translation is not None:
         return translation.source
 

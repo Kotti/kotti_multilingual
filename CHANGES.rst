@@ -9,6 +9,27 @@ Changelog
 
 - Add a translation dropdown UI for adding a translation of an item.
 
+- Added ``widget.i10n_widget_factory`` deferred widget.
+  Turns field into readonly mode if the context is a translation.
+
+  This deferred widget is also compatible with add forms, you should bind an ``addform``
+  property to ``True`` and the widget will be rendered as usual in edit mode.
+  You can do that adding a ``get_bind_data`` method on your add form.
+
+- Added a ``kotti_multilingual.blacklist`` setting with a list of type names
+  not translatable
+
+- Changed policy for translate action. Now the translated document is automatically
+  filled with the parent translation (enhanced usability since we don't have the screen
+  splitted in two parts like LinguaPlone). This is possible thanks to a change in 
+  sqla.py since we don't set language independent attributes on translated documents
+
+- Fixed translation of objects with not nullable fields
+
+- Added support for sqlalchemy's association_proxy
+
+- Fixed intermittent problem with get_source (integrity error)
+
 0.1a3 - 2013-05-08
 ------------------
 
