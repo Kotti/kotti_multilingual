@@ -80,17 +80,14 @@ def update_language(event):
 
 @subscribe(ObjectInsert, LanguageRoot)
 def autolink_language_root(event):
-    # experienced problems with autolink root folders with populators,
-    # disable it
-    pass
-#    context = event.object
-#
-#    lr = DBSession.query(LanguageRoot).first()
-#    if lr is None:
-#        return
-#
-#    source = api.get_source(lr)
-#    if source is None:
-#        source = lr
-#
-#    api.link_translation(source, context)
+    context = event.object
+
+    lr = DBSession.query(LanguageRoot).first()
+    if lr is None:
+        return
+
+    source = api.get_source(lr)
+    if source is None:
+        source = lr
+
+    api.link_translation(source, context)
