@@ -17,7 +17,14 @@ def test_LanguageRoot(db_session, config):
 
     root = get_root()
     content = LanguageRoot()
-    assert content.type_info.addable(root, DummyRequest()) is True
+    addable = content.type_info.addable(root, DummyRequest())
+    if isinstance(addable, bool):
+        assert content.type_info.addable(root, DummyRequest()) is True
+    else:
+        # Kotti 1.0.0-alpha.4
+        assert bool(
+            content.type_info.addable(root, DummyRequest()).boolval
+            ) is True
     root['content'] = content
 
 

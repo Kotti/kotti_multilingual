@@ -1,0 +1,6 @@
+recursive-include kotti_multilingual/alembic *
+recursive-include kotti_multilingual/locale *
+recursive-include kotti_multilingual/static *
+recursive-include kotti_multilingual/templates *
+recursive-include kotti_multilingual/tests *
+recursive-include kotti_multilingual *.zcml

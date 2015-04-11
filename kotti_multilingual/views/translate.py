@@ -64,7 +64,7 @@ def add_translation(context, request):
     source_id = request.params['id']
     source = DBSession.query(Content).get(int(source_id))
 
-    translation = context[source.__name__] = source.__class__()
+    translation = context[source.__name__] = source.copy()
     api.link_translation(source, translation)
     return HTTPFound(location=request.resource_url(translation, 'edit'))
 
