@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2dev - unreleased
+0.2a1dev - unreleased
 -------------------
 
 - Maintain translation links between content items, with translation source
