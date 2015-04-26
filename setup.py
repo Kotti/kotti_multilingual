@@ -38,7 +38,7 @@ setup(
     keywords='kotti add-on',
     author='Andreas Kaiser',
     author_email='disko@binary-punks.com',
-    url='https://github.com/disko/kotti_multilingual',
+    url='https://github.com/Kotti/kotti_multilingual',
     license='BSD',
     packages=find_packages(),
     include_package_data=True,
