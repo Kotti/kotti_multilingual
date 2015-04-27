@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2a2 (unreleased)
+0.2a2 (2015-04-27)
 ------------------
 
 - Fixed MANIFEST.in file
