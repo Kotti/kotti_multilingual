@@ -4,3 +4,4 @@ recursive-include kotti_multilingual/static *
 recursive-include kotti_multilingual/templates *
 recursive-include kotti_multilingual/tests *
 recursive-include kotti_multilingual *.zcml
+recursive-include kotti_multilingual *.rst

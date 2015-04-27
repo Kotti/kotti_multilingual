@@ -4,8 +4,7 @@ Changelog
 0.2a2 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Fixed MANIFEST.in file
 
 0.2a1 (2015-04-27)
 ------------------
