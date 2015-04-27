@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2a3 (unreleased)
+0.2a3 (2015-04-27)
 ------------------
 
 - Fixed 0.2a2 version (still wrong MANIFEST.in)
