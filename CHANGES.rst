@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.2a1dev - unreleased
--------------------
+0.2a1 (2015-04-27)
+------------------
 
 - Maintain translation links between content items, with translation source
   and targets.

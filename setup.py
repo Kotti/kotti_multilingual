@@ -11,7 +11,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 project = 'kotti_multilingual'
-version = '0.2a1dev'
+version = '0.2a1'
 
 here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.rst')).read()
